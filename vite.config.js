@@ -26,7 +26,7 @@ export default {
       },
       // 绝对路径重命名：/@/xxxx => src/xxxx
       {
-        find: /\/@\//,
+        find: /@\//,
         replacement: pathResolve('src') + '/',
       },
       {
