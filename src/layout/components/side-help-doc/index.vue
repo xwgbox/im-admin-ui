@@ -140,7 +140,7 @@
   watch(
     currentRoute,
     () => {
-      //SmartAdmin中 router的name 就是 后端存储menu的id
+      //火花中 router的name 就是 后端存储menu的id
       let menuId = -1;
       try {
         if (currentRoute.name === HOME_PAGE_NAME) {

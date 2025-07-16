@@ -58,7 +58,7 @@
   }
 
   /**
-   * SmartAdmin中 router的name 就是 后端存储menu的id
+   * 火花中 router的name 就是 后端存储menu的id
    * 所以此处可以直接监听路由，根据路由更新菜单的选中和展开
    */
   function updateOpenKeysAndSelectKeys() {

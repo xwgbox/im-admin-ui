@@ -64,9 +64,9 @@
             <template #bodyCell="{ text, record, column }">
 
 	    <!-- 有图片预览时 注释解开并把下面的'picture'修改成自己的图片字段名即可 -->
-              <!-- <template v-if="column.dataIndex === 'picture'">
+              <template v-if="column.dataIndex === 'giftImageUrl'">
                   <FilePreview :fileList="text" type="picture" />
-                </template> -->
+                </template>
 
 	    <!-- 使用字典时 注释解开并把下面的'dict'修改成自己的字典字段名即可 有多个字典字段就复制多份同理修改 不然不显示字典 -->
               <!-- 方便修改tag的颜色 orange green purple success processing error default warning -->
@@ -115,7 +115,7 @@
     import { smartSentry } from '/@/lib/smart-sentry';
     import TableOperator from '/@/components/support/table-operator/index.vue';
     import GiftForm from './gift-form.vue';
-    //import FilePreview from '/@/components/support/file-preview/index.vue'; // 图片预览组件
+    import FilePreview from '/@/components/support/file-preview/index.vue'; // 图片预览组件
 
     // ---------------------------- 表格列 ----------------------------
 
