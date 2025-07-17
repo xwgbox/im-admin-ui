@@ -1,9 +1,9 @@
 /**
  *  数据脱敏api
  *
- * @Author:    1024创新实验室-主任-卓大
+ * @Author:    火花-主任-卓大
  * @Date:      2024-07-31 21:02:37
- * @Copyright  1024创新实验室
+ * @Copyright  火花
  */
 import { getRequest } from '/@/lib/axios';
 

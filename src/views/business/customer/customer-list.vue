@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <TUIKit :SDKAppID="0" userID="customer_01" userSig="eJw1zF0LgjAYhuH-suOQd7N9JHSQh1FBKXQYojPehrrmskH03zOzw*d64H6RfJdFg3YkISwCspg2Vrr1WOPE5aP3XaPdBeh895UprMWKJFQAgOQU4PfoYNHp0TnnDP7qsfma5EwsFVdyruB1rMNKhJ7eTl3ZBgoZ3lNGN36-PRhzjmWaH4fiqWNUypo1eX8AhCMzSA__" />
+    <TUIKit :SDKAppID="1600075100" userID="customer_01" userSig="eJw1zE0LgkAUheH-MuuQO8o0JLQojAhCEgecViHNNa5mjR9ZEf33zGx5ngPvi6lt7HRYM5*5DrDJsMngpaWMBj7emvZaYn0APt6NKVJryTCfTwFACg7we-BhqcbehRAu-LWl8mtSuJILz5uNFTr19c2iiLosXmqdr-NdflehTasowKSxSXxe7YGHzyrTClU0Z*8Pooo0Xg__" />
     <TUICallKit class="callkit-container" :allowedMinimized="true" :allowedFullScreen="false" />
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import { TUIKit } from '/@/TUIKit';
 import { TUICallKit } from '@tencentcloud/call-uikit-vue';
 </script>

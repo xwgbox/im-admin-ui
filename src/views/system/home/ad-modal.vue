@@ -1,16 +1,16 @@
 <!--
   *  客服人员弹窗
   *
-  * @Author:    1024创新实验室-主任：卓大
+  * @Author:    火花-主任：卓大
   * @Date:      2022-09-06 20:40:16
   * @Wechat:    zhuda1024
   * @Email:     lab1024@163.com
-  * @Copyright  1024创新实验室 （ https://1024lab.net ），Since 2012
+  * @Copyright  火花 （ https://1024lab.net ），Since 2012
 -->
 <template>
   <a-modal :open="visible" width="600px" :bodyStyle="{height:'480px'}"   title="" :closable="false" :maskClosable="true">
     <a-row><div style="font-weight:bolder;margin: 0 auto;font-size: 16px">助力卓大抖音1000个粉丝，开播写代码🎉🎉</div> </a-row>
-    <a-row><div style="font-weight:bolder;margin: 20px auto;font-size: 15px">和1024创新实验室一起，热爱代码，热爱生活，永远年轻，永远前行🎉🎉</div> </a-row>
+    <a-row><div style="font-weight:bolder;margin: 20px auto;font-size: 15px">和火花一起，热爱代码，热爱生活，永远年轻，永远前行🎉🎉</div> </a-row>
     <br />
     <div class="app-qr-box">
       <div class="app-qr">

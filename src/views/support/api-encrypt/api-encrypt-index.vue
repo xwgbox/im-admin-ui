@@ -1,9 +1,9 @@
 <!--
   * 接口加密、解密
   *
-  * @Author:    1024创新实验室-主任-卓大
+  * @Author:    火花-主任-卓大
   * @Date:      2023-10-17 22:02:37
-  * @Copyright  1024创新实验室
+  * @Copyright  火花
 -->
 <template>
   <a-alert closable>
