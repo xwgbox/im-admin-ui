@@ -12,10 +12,10 @@
   <div class="login-container">
     <div class="box-item desc">
       <div class="welcome">
-        <p>欢迎登录 火花 V3</p>
+        <p>欢迎登录 火花 V3111</p>
         <p class="desc">
-          火花 是由 河南·洛阳
-          <a target="_blank" href="https://www.1024lab.net" style="color: white; weight: bolder; font-size: 15px; text-decoration: underline"
+          火花 开发
+          <a target="_blank" href="https://www.cqyunji.com" style="color: white; weight: bolder; font-size: 15px; text-decoration: underline"
             >火花（1024Lab）</a
           >
           基于SpringBoot + Sa-Token + Mybatis-Plus 和 Vue3 + Vite5 + Ant Design Vue 4 (同时支持JavaScript和TypeScript双版本)
@@ -31,7 +31,7 @@
             永远年轻，永远前行 !<br />
             <span class="author">
               <a target="_blank" href="https://zhuoda.vip" style="color: white; font-size: 13px; text-decoration: underline">
-                火花-主任：卓大
+                火花-主任：xxx
               </a>
             </span>
           </span>
@@ -87,22 +87,22 @@
           <div class="btn" @click="onLogin">登录</div>
         </a-form-item>
       </a-form>
-      <div class="more">
-        <div class="title-box">
-          <p class="line"></p>
-          <p class="title">其他方式登录</p>
-          <p class="line"></p>
-        </div>
-        <div class="login-type">
-          <img :src="wechatIcon" />
-          <img :src="aliIcon" />
-          <img :src="douyinIcon" />
-          <img :src="qqIcon" />
-          <img :src="weiboIcon" />
-          <img :src="feishuIcon" />
-          <img :src="googleIcon" />
-        </div>
-      </div>
+<!--      <div class="more">-->
+<!--        <div class="title-box">-->
+<!--          <p class="line"></p>-->
+<!--          <p class="title">其他方式登录</p>-->
+<!--          <p class="line"></p>-->
+<!--        </div>-->
+<!--        <div class="login-type">-->
+<!--          <img :src="wechatIcon" />-->
+<!--          <img :src="aliIcon" />-->
+<!--          <img :src="douyinIcon" />-->
+<!--          <img :src="qqIcon" />-->
+<!--          <img :src="weiboIcon" />-->
+<!--          <img :src="feishuIcon" />-->
+<!--          <img :src="googleIcon" />-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </template>

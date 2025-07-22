@@ -78,7 +78,7 @@
 
                 <template v-if="column.dataIndex === 'action'">
                     <div class="smart-table-operate">
-                        <a-button @click="showForm(record)" type="link">编辑</a-button>
+                        <a-button @click="showForm(record)" type="link">处理</a-button>
                         <a-button @click="onDelete(record)" danger type="link">删除</a-button>
                     </div>
                 </template>
@@ -126,37 +126,37 @@
             ellipsis: true,
         },
         {
-            title: '发起举报的用户的ID',
+            title: '发起举报的用户',
             dataIndex: 'reporterMemberId',
             ellipsis: true,
         },
         {
-            title: '被举报的用户的ID',
+            title: '被举报的用户',
             dataIndex: 'reportedMemberId',
             ellipsis: true,
         },
         {
             title: '违规类型',
-            dataIndex: 'reportType',
+            dataIndex: 'reportTypeDesc',
             ellipsis: true,
         },
         {
-            title: '举报的状态，如待处理、已处理',
-            dataIndex: 'status',
+            title: '举报的状态',
+            dataIndex: 'statusDesc',
             ellipsis: true,
         },
         {
-            title: '管理员对举报的评论或处理意见',
+            title: '处理意见',
             dataIndex: 'adminComment',
             ellipsis: true,
         },
         {
-            title: '记录创建时间',
+            title: '创建时间',
             dataIndex: 'createTime',
             ellipsis: true,
         },
         {
-            title: '记录最后更新时间',
+            title: '更新时间',
             dataIndex: 'updateTime',
             ellipsis: true,
         },

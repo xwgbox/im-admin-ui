@@ -32,7 +32,7 @@
               class="TUIKit-main-main"
             >
               <TUIChat>
-                <h1>{{ TUITranslateService.t('欢迎使用腾讯云即时通信IM') }}</h1>
+<!--                <h1>{{ TUITranslateService.t('点击左边会话进入聊天界面') }}</h1>-->
               </TUIChat>
               <TUIGroup :class="isH5 ? 'chat-popup' : 'chat-aside'" />
               <TUISearch
@@ -75,10 +75,10 @@ const navbarList = [
     id: 'message',
     label: '消息',
   },
-  {
-    id: 'contact',
-    label: '通讯录',
-  },
+  // {
+  //   id: 'contact',
+  //   label: '通讯录',
+  // },
 ];
 
 const props = defineProps({

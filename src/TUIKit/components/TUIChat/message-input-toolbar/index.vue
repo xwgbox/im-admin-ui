@@ -30,21 +30,21 @@
         v-if="featureConfig.InputVideo"
         videoSourceType="album"
       />
-      <Evaluate v-if="featureConfig.InputEvaluation" />
+<!--      <Evaluate v-if="featureConfig.InputEvaluation" />-->
       <Words v-if="featureConfig.InputQuickReplies" />
       <ClearHistory v-if="featureConfig.ClearHistory" />
-      <template v-if="extensionListShowInStart[0]">
-        <ToolbarItemContainer
-          v-for="extension in extensionListShowInStart"
-          :key="extension.id"
-          :iconFile="genExtensionIcon(extension)"
-          :title="genExtensionText(extension)"
-          :iconWidth="isUniFrameWork ? '25px' : '20px'"
-          :iconHeight="isUniFrameWork ? '25px' : '20px'"
-          :needDialog="false"
-          @onIconClick="onExtensionClick(extension)"
-        />
-      </template>
+<!--      <template v-if="extensionListShowInStart[0]">-->
+<!--        <ToolbarItemContainer-->
+<!--          v-for="extension in extensionListShowInStart"-->
+<!--          :key="extension.id"-->
+<!--          :iconFile="genExtensionIcon(extension)"-->
+<!--          :title="genExtensionText(extension)"-->
+<!--          :iconWidth="isUniFrameWork ? '25px' : '20px'"-->
+<!--          :iconHeight="isUniFrameWork ? '25px' : '20px'"-->
+<!--          :needDialog="false"-->
+<!--          @onIconClick="onExtensionClick(extension)"-->
+<!--        />-->
+<!--      </template>-->
     </div>
     <div
       v-if="extensionListShowInEnd[0] && isPC"

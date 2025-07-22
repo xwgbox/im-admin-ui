@@ -81,6 +81,10 @@ export default {
         modifyVars: customVariables,
         javascriptEnabled: true,
       },
+      scss: {
+        // 忽略 node_modules 中的 sass 警告
+        quietDeps: true,
+      },
     },
   },
   define: {

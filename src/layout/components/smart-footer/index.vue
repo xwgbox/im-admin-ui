@@ -9,7 +9,7 @@
 -->
 <template>
   <div class="version">
-    <a target="_blank" class="smart-copyright" href="https://www.1024lab.net"> ©2012-{{ currentYear }} 火花 | 火花 </a>
+    <a target="_blank" class="smart-copyright" href="https://www.cqyunji.com"> ©2025-{{ currentYear }} 火花 | 火花 </a>
   </div>
 </template>
 <script setup>
