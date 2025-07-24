@@ -27,11 +27,12 @@
         <a-form-item label="活动参与数量"  name="playerCount">
           <a-input-number style="width: 100%" v-model:value="form.playerCount" placeholder="活动参与数量" />
         </a-form-item>
-        <a-form-item label="图片url"  name="imageUrl">
+        <a-form-item label="图片"  name="imageUrl">
           <FileUpload
               :defaultFileList="form.imageUrl"
               :folder="FILE_FOLDER_TYPE_ENUM.COMMON.value"
-              buttonText="上传 图片url"
+              maxUploadSize="1"
+              buttonText="上传 图片"
               listType="text"
               @change="e => form.imageUrl = e"
           />

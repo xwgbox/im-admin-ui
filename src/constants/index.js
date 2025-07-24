@@ -22,11 +22,13 @@ import codeGeneratorConst from './support/code-generator-const';
 import changeLogConst from './support/change-log-const';
 import jobConst from './support/job-const';
 import memberPrice from './business/price/member-price-const';
+import {BANNER_ENUM} from './business/banner/banner-const';
 
 export default {
   FLAG_NUMBER_ENUM,
   LOGIN_DEVICE_ENUM,
   GENDER_ENUM,
+  BANNER_ENUM,
   USER_TYPE_ENUM,
   LAYOUT_ENUM,
   ...loginLog,
