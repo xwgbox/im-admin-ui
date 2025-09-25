@@ -12,9 +12,9 @@
       <a-form-item label="会员id" class="smart-query-form-item">
         <a-input style="width: 200px" v-model:value="queryForm.memberId" placeholder="会员id" />
       </a-form-item>
-      <a-form-item label="服务内容id" class="smart-query-form-item">
-        <a-input style="width: 200px" v-model:value="queryForm.specificServiceId" placeholder="具体服务内容id" />
-      </a-form-item>
+<!--      <a-form-item label="服务内容id" class="smart-query-form-item">-->
+<!--        <a-input style="width: 200px" v-model:value="queryForm.specificServiceId" placeholder="具体服务内容id" />-->
+<!--      </a-form-item>-->
       <a-form-item class="smart-query-form-item">
         <a-button type="primary" @click="onSearch">
           <template #icon>
@@ -86,7 +86,7 @@
         </template>
         <template v-if="column.dataIndex === 'action'">
           <div class="smart-table-operate">
-            <a-button @click="showForm(record)" type="link">编辑</a-button>
+<!--            <a-button @click="showForm(record)" type="link">编辑</a-button>-->
             <a-button @click="onDelete(record)" danger type="link">删除</a-button>
           </div>
         </template>

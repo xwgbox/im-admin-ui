@@ -41,9 +41,18 @@
         <a-form-item label="交友次数"  name="makeFriendsQuantity">
           <a-input-number style="width: 100%" v-model:value="form.makeFriendsQuantity" placeholder="交友次数" />
         </a-form-item>
-        <a-form-item label="暖心服务次数"  name="activitiesQuantity">
-          <a-input-number style="width: 100%" v-model:value="form.activitiesQuantity" placeholder="暖心服务次数" />
+        <a-form-item label="评论次数"  name="reviewQuantity">
+          <a-input-number style="width: 100%" v-model:value="form.reviewQuantity" placeholder="暖心服务次数" />
         </a-form-item>
+      <a-form-item label="暖心服务次数"  name="activitiesQuantity">
+        <a-input-number style="width: 100%" v-model:value="form.activitiesQuantity" placeholder="暖心服务次数" />
+      </a-form-item>
+      <a-form-item label="查看社交账号次数"  name="socialMediaAccountsQuantity">
+        <a-input-number style="width: 100%" v-model:value="form.socialMediaAccountsQuantity" placeholder="暖心服务次数" />
+      </a-form-item>
+      <a-form-item label="匹配交友次数"  name="matchMakingFriendsQuantity">
+        <a-input-number style="width: 100%" v-model:value="form.matchMakingFriendsQuantity" placeholder="暖心服务次数" />
+      </a-form-item>
     </a-form>
 
     <template #footer>
@@ -115,7 +124,10 @@
       effectiveTime: [{ required: true, message: '有效时间 必填' }],
       typeTime: [{ required: true, message: '时间类型（参考PriceTimeEnum） 必填' }],
       makeFriendsQuantity: [{ required: true, message: '交友次数 必填' }],
+    reviewQuantity: [{ required: true, message: '评论次数 必填' }],
       activitiesQuantity: [{ required: true, message: '暖心服务次数 必填' }],
+    socialMediaAccountsQuantity: [{ required: true, message: '查看社交账号次数次数 必填' }],
+    matchMakingFriendsQuantity: [{ required: true, message: '匹配交友次数次数 必填' }],
   };
 
   // 点击确定，验证表单

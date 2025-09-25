@@ -114,16 +114,21 @@
             dataIndex: 'id',
             ellipsis: true,
         },
-        {
-            title: '关联的价格ID',
-            dataIndex: 'priceId',
-            ellipsis: true,
-        },
-        {
-            title: '下单用户ID',
-            dataIndex: 'memberId',
-            ellipsis: true,
-        },
+      {
+        title: '昵称',
+        dataIndex: 'nickName',
+        ellipsis: true,
+      },
+        // {
+        //     title: '关联的价格ID',
+        //     dataIndex: 'priceId',
+        //     ellipsis: true,
+        // },
+        // {
+        //     title: '下单用户ID',
+        //     dataIndex: 'memberId',
+        //     ellipsis: true,
+        // },
         {
             title: '订单编号',
             dataIndex: 'orderNo',

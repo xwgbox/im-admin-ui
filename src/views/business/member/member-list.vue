@@ -15,9 +15,7 @@
       <a-form-item label="用户账号" class="smart-query-form-item">
         <a-input style="width: 200px" v-model:value="queryForm.userName" placeholder="用户账号"/>
       </a-form-item>
-      <a-form-item label="性别" class="smart-query-form-item">
-        <a-input style="width: 200px" v-model:value="queryForm.gender" placeholder="性别"/>
-      </a-form-item>
+
       <a-form-item class="smart-query-form-item">
         <a-button type="primary" @click="onSearch">
           <template #icon>
@@ -67,7 +65,7 @@
 
         <!-- 有图片预览时 注释解开并把下面的'picture'修改成自己的图片字段名即可 -->
         <template v-if="column.dataIndex === 'avatar'">
-          <a-image :src="text" width="30%" height="30%"/>
+          <a-image :src="text" width="100%" height="100%"/>
         </template>
         <template v-if="column.dataIndex === 'gender'">
           <a-tag color="cyan">
@@ -84,11 +82,11 @@
           </a-tag>
         </template>
 
-        <template v-if="column.dataIndex === 'action'">
-          <div class="smart-table-operate">
-            <a-button @click="showForm(record)" type="link">编辑</a-button>
-          </div>
-        </template>
+<!--        <template v-if="column.dataIndex === 'action'">-->
+<!--          <div class="smart-table-operate">-->
+<!--            <a-button @click="showForm(record)" type="link">编辑</a-button>-->
+<!--          </div>-->
+<!--        </template>-->
       </template>
     </a-table>
     <!---------- 表格 end ----------->
@@ -127,6 +125,7 @@ const columns = ref([
     title: '主键ID',
     dataIndex: 'id',
     ellipsis: true,
+    width: 180
   },
   {
     title: '昵称',
@@ -142,26 +141,40 @@ const columns = ref([
     title: '用户余额',
     dataIndex: 'nowMoney',
     ellipsis: true,
+    width: 80
   },
   {
     title: '佣金金额',
     dataIndex: 'brokeragePrice',
     ellipsis: true,
+    width: 80
   },
   {
     title: '头像',
     dataIndex: 'avatar',
     ellipsis: true,
+    width: 50
   },
   {
     title: '性别 ',
     dataIndex: 'gender',
+    ellipsis: true,
+    width: 50
+  }, {
+    title: '会员级别',
+    dataIndex: 'memberTypeDesc',
+    ellipsis: true,
+  },
+  {
+    title: '过期时间 ',
+    dataIndex: 'endTime',
     ellipsis: true,
   },
   {
     title: '状态',
     dataIndex: 'status',
     ellipsis: true,
+    width: 50,
   },
   {
     title: '创建时间',
@@ -172,7 +185,7 @@ const columns = ref([
     title: '操作',
     dataIndex: 'action',
     fixed: 'right',
-    width: 90,
+    width: 50,
   },
 ]);
 

@@ -115,8 +115,8 @@
             ellipsis: true,
         },
         {
-            title: '下单的用户ID',
-            dataIndex: 'memberId',
+            title: '昵称',
+            dataIndex: 'nickName',
             ellipsis: true,
         },
         {

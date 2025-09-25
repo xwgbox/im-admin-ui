@@ -26,11 +26,12 @@
               :defaultFileList="form.giftImageUrl"
               :folder="FILE_FOLDER_TYPE_ENUM.COMMON.value"
               buttonText="上传 图片"
+              maxUploadSize=1
               listType="text"
               @change="e => form.giftImageUrl = e"
           />
         </a-form-item>
-        <a-form-item label="数量"  name="giftPrice">
+        <a-form-item label="钻石数量"  name="giftPrice">
           <a-input-number style="width: 100%" v-model:value="form.giftPrice" placeholder="数量" />
         </a-form-item>
     </a-form>

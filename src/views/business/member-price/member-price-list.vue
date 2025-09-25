@@ -7,27 +7,27 @@
 -->
 <template>
     <!---------- 查询表单form begin ----------->
-    <a-form class="smart-query-form">
-        <a-row class="smart-query-form-row">
-            <a-form-item label="价格类型（参考PriceTypeEnum）" class="smart-query-form-item">
-                <a-input style="width: 200px" v-model:value="queryForm.type" placeholder="价格类型（参考PriceTypeEnum）" />
-            </a-form-item>
-            <a-form-item class="smart-query-form-item">
-                <a-button type="primary" @click="onSearch">
-                    <template #icon>
-                        <SearchOutlined />
-                    </template>
-                    查询
-                </a-button>
-                <a-button @click="resetQuery" class="smart-margin-left10">
-                    <template #icon>
-                        <ReloadOutlined />
-                    </template>
-                    重置
-                </a-button>
-            </a-form-item>
-        </a-row>
-    </a-form>
+<!--    <a-form class="smart-query-form">-->
+<!--        <a-row class="smart-query-form-row">-->
+<!--            <a-form-item label="价格类型（参考PriceTypeEnum）" class="smart-query-form-item">-->
+<!--                <a-input style="width: 200px" v-model:value="queryForm.type" placeholder="价格类型（参考PriceTypeEnum）" />-->
+<!--            </a-form-item>-->
+<!--            <a-form-item class="smart-query-form-item">-->
+<!--                <a-button type="primary" @click="onSearch">-->
+<!--                    <template #icon>-->
+<!--                        <SearchOutlined />-->
+<!--                    </template>-->
+<!--                    查询-->
+<!--                </a-button>-->
+<!--                <a-button @click="resetQuery" class="smart-margin-left10">-->
+<!--                    <template #icon>-->
+<!--                        <ReloadOutlined />-->
+<!--                    </template>-->
+<!--                    重置-->
+<!--                </a-button>-->
+<!--            </a-form-item>-->
+<!--        </a-row>-->
+<!--    </a-form>-->
     <!---------- 查询表单form end ----------->
 
     <a-card size="small" :bordered="false" :hoverable="true">

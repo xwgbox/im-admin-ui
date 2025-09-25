@@ -136,7 +136,7 @@
             ellipsis: true,
         },
         {
-            title: '数量',
+            title: '钻石数量',
             dataIndex: 'giftPrice',
             ellipsis: true,
         },
