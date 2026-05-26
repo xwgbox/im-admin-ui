@@ -21,8 +21,15 @@
       <a-form-item label="用户类型" name="memberType">
         <SmartEnumSelect width="100%" v-model:value="form.memberType" enumName="MEMBER_TYPE_ENUM" placeholder="用户类型"/>
       </a-form-item>
+
       <a-form-item label="过期时间" name="endTime">
-        <a-input-number style="width: 100%" v-model:value="form.endTime" placeholder="过期时间"/>
+        <a-date-picker
+            style="width: 100%"
+            v-model:value="form.endTime"
+            show-time
+            format="YYYY-MM-DD HH:mm:ss"
+            placeholder="请选择过期时间"
+        />
       </a-form-item>
       <a-form-item label="交友次数" name="makeFriendsQuantity">
         <a-input-number style="width: 100%" v-model:value="form.makeFriendsQuantity" placeholder="交友次数"/>
@@ -53,6 +60,7 @@
   </a-modal>
 </template>
 <script setup>
+import dayjs from 'dayjs';
 import {nextTick, reactive, ref} from 'vue';
 import _ from 'lodash';
 import {message} from 'ant-design-vue';
@@ -70,24 +78,38 @@ const emits = defineEmits(['reloadList']);
 const visibleFlag = ref(false);
 
 function show(rowData) {
+  // 1. 先彻底重置表单（此时 form.endTime 变为 undefined，组件渲染是安全的）
   Object.assign(form, formDefault);
-  if (rowData && !_.isEmpty(rowData)) {
-    Object.assign(form, rowData);
+
+  // 2. 只取 rowData 的 id 用于查询详情，不要把 rowData 里的 endTime 等旧数据直接塞进表单
+  // 如果你需要 rowData 里的其他字段，请确保把 endTime 剔除掉，或者不在这里赋值
+  const queryId = rowData ? rowData.id : undefined;
+
+  visibleFlag.value = true; // 提前打开弹窗，让用户看到加载状态（如果有）
+
+  if (queryId) {
+    memberApi.queryDetails({ id: queryId }).then(data => {
+      console.log(data);
+      // 将接口返回的数据合并到 form
+      Object.assign(form, data.data);
+
+      // 【核心修复】防御性转换：确保传给 dayjs 的是有效字符串或数字
+      if (form.endTime) {
+        form.endTime = dayjs(form.endTime);
+      } else {
+        form.endTime = undefined;
+      }
+    }).catch(err => {
+      console.error("获取详情失败", err);
+      // 即使接口失败，也要保证 endTime 是 undefined，防止报错
+      form.endTime = undefined;
+    });
   }
-  // 使用字典时把下面这注释修改成自己的字典字段 有多个字典字段就复制多份同理修改 不然打开表单时不显示字典初始值
-  // if (form.status && form.status.length > 0) {
-  //   form.status = form.status.map((e) => e.valueCode);
-  // }
-  memberApi.queryDetails({id:rowData.id}).then(data=>{
-    console.log(data)
-    Object.assign(form, data.data);
-  });
-  visibleFlag.value = true;
+
   nextTick(() => {
     formRef.value.clearValidate();
   });
 }
-
 function onClose() {
   Object.assign(form, formDefault);
   visibleFlag.value = false;
@@ -131,10 +153,14 @@ async function onSubmit() {
 async function save() {
   SmartLoading.show();
   try {
-    if (form.id) {
-      await memberApi.update(form);
+    const submitData = { ...form };
+    if (submitData.endTime) {
+      submitData.endTime = submitData.endTime.format('YYYY-MM-DD HH:mm:ss');
+    }
+    if (submitData.id) {
+      await memberApi.update(submitData);
     } else {
-      await memberApi.add(form);
+      await memberApi.add(submitData);
     }
     message.success('操作成功');
     emits('reloadList');
