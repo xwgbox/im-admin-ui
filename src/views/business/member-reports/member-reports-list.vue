@@ -129,10 +129,19 @@
             title: '发起举报的用户',
             dataIndex: 'reporterMemberId',
             ellipsis: true,
+        }, {
+            title: '发起举报的用户昵称',
+            dataIndex: 'reporterNickName',
+            ellipsis: true,
         },
         {
             title: '被举报的用户',
             dataIndex: 'reportedMemberId',
+            ellipsis: true,
+        },
+      {
+            title: '被举报的用户昵称',
+            dataIndex: 'reportedNickName',
             ellipsis: true,
         },
         {

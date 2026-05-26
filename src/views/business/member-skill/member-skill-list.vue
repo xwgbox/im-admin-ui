@@ -135,6 +135,12 @@ const columns = ref([
     dataIndex: 'id',
     ellipsis: true,
   },
+
+  {
+    title: '会员昵称',
+    dataIndex: 'nickName',
+    ellipsis: true,
+  },
   {
     title: '技能类型',
     dataIndex: 'skillType',
@@ -173,11 +179,6 @@ const columns = ref([
   {
     title: '更新时间',
     dataIndex: 'updateTime',
-    ellipsis: true,
-  },
-  {
-    title: '会员id',
-    dataIndex: 'memberId',
     ellipsis: true,
   },
   {

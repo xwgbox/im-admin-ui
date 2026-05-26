@@ -24,6 +24,7 @@
             :folder="FILE_FOLDER_TYPE_ENUM.COMMON.value"
             buttonText="上传 图片地址"
             listType="text"
+            maxUploadSize="1"
             @change="e => form.imgUrl = e"
         />
       </a-form-item>

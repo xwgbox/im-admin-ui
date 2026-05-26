@@ -10,7 +10,7 @@
   <a-form class="smart-query-form">
     <a-row class="smart-query-form-row">
       <a-form-item label="活动类型" class="smart-query-form-item">
-        <DictSelect width="200px" v-model:value="queryForm.type" keyCode="activities_type" placeholder="活动类型"/>
+        <DictSelect width="200px" v-model:value="queryForm.types" keyCode="activities_type"  mode="multiple"  placeholder="活动类型"/>
 
 <!--      <a-input style="width: 200px" v-model:value="queryForm.type" placeholder="活动类型"/>-->
       </a-form-item>
@@ -163,7 +163,7 @@ const columns = ref([
 // ---------------------------- 查询数据表单和方法 ----------------------------
 
 const queryFormState = {
-  type: undefined, //活动类型
+  types: [], //活动类型
   pageNum: 1,
   pageSize: 10,
 };

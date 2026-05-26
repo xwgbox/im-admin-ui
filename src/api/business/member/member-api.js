@@ -15,6 +15,9 @@ export const memberApi = {
   queryPage : (param) => {
     return postRequest('/member/queryPage', param);
   },
+  queryDetails : (param) => {
+    return getRequest('/member/details', param);
+  },
 
   /**
    * 增加  @author  xwg

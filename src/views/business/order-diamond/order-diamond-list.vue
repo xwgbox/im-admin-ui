@@ -13,8 +13,15 @@
                 <a-input style="width: 200px" v-model:value="queryForm.memberId" placeholder="下单的用户ID" />
             </a-form-item>
             <a-form-item label="订单号" class="smart-query-form-item">
-                <a-input style="width: 200px" v-model:value="queryForm.orderNumber" placeholder="订单号" />
+                <a-input style="width: 200px" v-model:value="queryForm.orderNo" placeholder="订单号" />
             </a-form-item>
+          <a-form-item label="订单状态" class="smart-query-form-item">
+            <DictSelect
+                width="200px"
+                v-model:value="queryForm.status"
+                keyCode="order_status"
+                placeholder="请选择订单状态"/>
+          </a-form-item>
             <a-form-item class="smart-query-form-item">
                 <a-button type="primary" @click="onSearch">
                     <template #icon>
@@ -103,8 +110,13 @@
     import { orderDiamondApi } from '/@/api/business/order-diamond/order-diamond-api';
     import { PAGE_SIZE_OPTIONS } from '/@/constants/common-const';
     import { smartSentry } from '/@/lib/smart-sentry';
+    import DictSelect from '/@/components/support/dict-select/index.vue';
+    import DictPreview from '/@/components/dict-preview/index.vue';
+    import { useDict } from '/@/utils/dict';
     import TableOperator from '/@/components/support/table-operator/index.vue';
     //import FilePreview from '/@/components/support/file-preview/index.vue'; // 图片预览组件
+    // 获取字典数据
+    const descList = useDict('order_status');
 
     // ---------------------------- 表格列 ----------------------------
 
@@ -155,7 +167,8 @@
 
     const queryFormState = {
         memberId: undefined, //下单的用户ID
-        orderNumber: undefined, //订单号
+        orderNo: undefined, //订单号
+      status:undefined,
         pageNum: 1,
         pageSize: 10,
     };

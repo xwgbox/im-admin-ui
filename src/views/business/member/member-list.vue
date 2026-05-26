@@ -36,19 +36,19 @@
 
   <a-card size="small" :bordered="false" :hoverable="true">
     <!---------- 表格操作行 begin ----------->
-    <a-row class="smart-table-btn-block">
-      <div class="smart-table-operate-block">
-        <a-button @click="showForm" type="primary" size="small">
-          <template #icon>
-            <PlusOutlined/>
-          </template>
-          新建
-        </a-button>
-      </div>
-      <div class="smart-table-setting-block">
-        <TableOperator v-model="columns" :tableId="null" :refresh="queryData"/>
-      </div>
-    </a-row>
+<!--    <a-row class="smart-table-btn-block">-->
+<!--      <div class="smart-table-operate-block">-->
+<!--        <a-button @click="showForm" type="primary" size="small">-->
+<!--          <template #icon>-->
+<!--            <PlusOutlined/>-->
+<!--          </template>-->
+<!--          新建-->
+<!--        </a-button>-->
+<!--      </div>-->
+<!--      <div class="smart-table-setting-block">-->
+<!--        <TableOperator v-model="columns" :tableId="null" :refresh="queryData"/>-->
+<!--      </div>-->
+<!--    </a-row>-->
     <!---------- 表格操作行 end ----------->
 
     <!---------- 表格 begin ----------->
@@ -68,25 +68,24 @@
           <a-image :src="text" width="100%" height="100%"/>
         </template>
         <template v-if="column.dataIndex === 'gender'">
-          <a-tag color="cyan">
-            {{ text === 1 ? '男' : '女' }}
-          </a-tag>
+
+          <a-tag color="cyan">{{ $smartEnumPlugin.getDescByValue('GENDER_ENUM', text) }}</a-tag>
+
         </template>
 
         <!-- 使用字典时 注释解开并把下面的'dict'修改成自己的字典字段名即可 有多个字典字段就复制多份同理修改 不然不显示字典 -->
         <!-- 方便修改tag的颜色 orange green purple success processing error default warning -->
         <template v-if="column.dataIndex === 'status'">
 
-            <a-tag :color="text? 'cyan':'red'">
-            {{ text ? '正常' : '禁用' }}
-          </a-tag>
+          <a-tag >{{ $smartEnumPlugin.getDescByValue('MEMBER_STATUS_ENUM', text) }}</a-tag>
+
         </template>
 
-<!--        <template v-if="column.dataIndex === 'action'">-->
-<!--          <div class="smart-table-operate">-->
-<!--            <a-button @click="showForm(record)" type="link">编辑</a-button>-->
-<!--          </div>-->
-<!--        </template>-->
+        <template v-if="column.dataIndex === 'action'">
+          <div class="smart-table-operate">
+            <a-button @click="showForm(record)" type="link">编辑</a-button>
+          </div>
+        </template>
       </template>
     </a-table>
     <!---------- 表格 end ----------->

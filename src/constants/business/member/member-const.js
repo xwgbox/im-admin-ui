@@ -7,20 +7,37 @@
  */
 
 
-/**
- * 性别 0男 1女
- */
-export const GENDER_ENUM = {
-    MAIL: {
+
+export const MEMBER_STATUS_ENUM = {
+    NORMAL: {
         value: 1,
-        desc: '男'
+        desc: '正常'
     },
-    ORDER: {
+    PROHIBITED: {
+        value: 0,
+        desc: '禁止'
+    },
+    CANCEL: {
         value: 2,
-        desc: '女'
+        desc: '注销'
     },
 }
-
+export const MEMBER_TYPE_ENUM = {
+    ORDINARY_MEMBER: {
+        value: 1,
+        desc: '普通会员'
+    },
+    ORDINARY_USER: {
+        value: 0,
+        desc: '普通用户'
+    },
+    SUPER_MEMBER: {
+        value: 2,
+        desc: '超级会员'
+    }
+}
 export default {
-    GENDER_ENUM,
+
+    MEMBER_STATUS_ENUM,
+    MEMBER_TYPE_ENUM
 };
