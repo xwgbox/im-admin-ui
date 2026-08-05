@@ -9,6 +9,9 @@
   <!---------- 查询表单form begin ----------->
   <a-form class="smart-query-form">
     <a-row class="smart-query-form-row">
+      <a-form-item label="id" class="smart-query-form-item">
+        <a-input style="width: 200px" v-model:value="queryForm.id" placeholder="id"/>
+      </a-form-item>
       <a-form-item label="昵称" class="smart-query-form-item">
         <a-input style="width: 200px" v-model:value="queryForm.nickName" placeholder="昵称"/>
       </a-form-item>
@@ -36,19 +39,19 @@
 
   <a-card size="small" :bordered="false" :hoverable="true">
     <!---------- 表格操作行 begin ----------->
-<!--    <a-row class="smart-table-btn-block">-->
-<!--      <div class="smart-table-operate-block">-->
-<!--        <a-button @click="showForm" type="primary" size="small">-->
-<!--          <template #icon>-->
-<!--            <PlusOutlined/>-->
-<!--          </template>-->
-<!--          新建-->
-<!--        </a-button>-->
-<!--      </div>-->
-<!--      <div class="smart-table-setting-block">-->
-<!--        <TableOperator v-model="columns" :tableId="null" :refresh="queryData"/>-->
-<!--      </div>-->
-<!--    </a-row>-->
+    <!--    <a-row class="smart-table-btn-block">-->
+    <!--      <div class="smart-table-operate-block">-->
+    <!--        <a-button @click="showForm" type="primary" size="small">-->
+    <!--          <template #icon>-->
+    <!--            <PlusOutlined/>-->
+    <!--          </template>-->
+    <!--          新建-->
+    <!--        </a-button>-->
+    <!--      </div>-->
+    <!--      <div class="smart-table-setting-block">-->
+    <!--        <TableOperator v-model="columns" :tableId="null" :refresh="queryData"/>-->
+    <!--      </div>-->
+    <!--    </a-row>-->
     <!---------- 表格操作行 end ----------->
 
     <!---------- 表格 begin ----------->
@@ -77,13 +80,25 @@
         <!-- 方便修改tag的颜色 orange green purple success processing error default warning -->
         <template v-if="column.dataIndex === 'status'">
 
-          <a-tag >{{ $smartEnumPlugin.getDescByValue('MEMBER_STATUS_ENUM', text) }}</a-tag>
+          <a-tag>{{ $smartEnumPlugin.getDescByValue('MEMBER_STATUS_ENUM', text) }}</a-tag>
 
         </template>
 
         <template v-if="column.dataIndex === 'action'">
           <div class="smart-table-operate">
             <a-button @click="showForm(record)" type="link">编辑</a-button>
+            <!-- 新增：下拉功能菜单 -->
+            <a-dropdown>
+              <a-button type="link">更多</a-button>
+              <template #overlay>
+                <a-menu @click="({ key }) => handleMenuClick(key, record)">
+                  <a-menu-item key="viewPost">查看动态</a-menu-item>
+                  <a-menu-item key="delMember">删除</a-menu-item>
+                  <a-menu-item key="deductCommission">扣除佣金</a-menu-item>
+                  <a-menu-item key="sendMessage">发送系统消息</a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
           </div>
         </template>
       </template>
@@ -105,8 +120,33 @@
           :show-total="(total) => `共${total}条`"
       />
     </div>
-
+    <a-modal
+        v-model:open="deductModalVisible"
+        title="扣除佣金"
+        @ok="handleDeductSubmit"
+        :confirmLoading="deductLoading">
+      <a-form layout="vertical">
+        <a-form-item label="当前佣金余额">
+          <span style="font-weight: bold; color: #1890ff;">{{ currentDeductRecord?.brokeragePrice || 0 }}</span>
+        </a-form-item>
+        <a-form-item label="请输入扣除金额（仅限整数）" required>
+          <a-input-number
+              v-model:value="deductAmount"
+              style="width: 100%"
+              :min="1"
+              :max="currentDeductRecord?.brokeragePrice || 0"
+              :precision="0"
+              placeholder="请输入扣除金额"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
     <MemberForm ref="formRef" @reloadList="queryData"/>
+    <SendMessageModal
+        ref="sendMessageModalRef"
+        @success="queryData"
+    />
+    <!-- 扣除佣金弹窗 -->
 
   </a-card>
 </template>
@@ -114,11 +154,13 @@
 import {onMounted, reactive, ref} from 'vue';
 import {memberApi} from '/@/api/business/member/member-api';
 import {smartSentry} from '/@/lib/smart-sentry';
+import {useRouter} from 'vue-router'; // 引入路由
+import {message} from 'ant-design-vue'; // 用于提示
 import MemberForm from './member-form.vue';
+import SendMessageModal from './send-message-modal.vue';
 //import FilePreview from '/@/components/support/file-preview/index.vue'; // 图片预览组件
-
 // ---------------------------- 表格列 ----------------------------
-
+const router = useRouter();
 const columns = ref([
   {
     title: '主键ID',
@@ -193,7 +235,8 @@ const columns = ref([
 const queryFormState = {
   nickName: undefined, //昵称
   userName: undefined, //用户账号
-  gender: undefined, //性别
+  gender: undefined, //id
+  id: undefined, //性别
   pageNum: 1,
   pageSize: 10,
 };
@@ -205,6 +248,33 @@ const tableLoading = ref(false);
 const tableData = ref([]);
 // 总数
 const total = ref(0);
+// --- 扣除佣金相关状态 ---
+const deductModalVisible = ref(false);
+const deductLoading = ref(false);
+const deductAmount = ref(null);
+const currentDeductRecord = ref(null);
+
+// 提交扣除
+async function handleDeductSubmit() {
+  if (!deductAmount.value || deductAmount.value <= 0) {
+    message.warning('请输入有效的扣除金额');
+    return;
+  }
+  deductLoading.value = true;
+  try {
+    await memberApi.updateAccount({
+      id: currentDeductRecord.value.id,
+      amount: deductAmount.value
+    });
+    message.success('扣除佣金成功');
+    deductModalVisible.value = false;
+    queryData(); // 刷新列表
+  } catch (e) {
+    smartSentry.captureError(e); // 捕获后端抛出的"金额不足"等错误
+  } finally {
+    deductLoading.value = false;
+  }
+}
 
 // 重置查询条件
 function resetQuery() {
@@ -244,4 +314,28 @@ function showForm(data) {
   formRef.value.show(data);
 }
 
+const sendMessageModalRef = ref();
+
+// 处理下拉菜单点击
+function handleMenuClick(key, record) {
+  if (key === 'viewPost') {
+    // 跳转到上级目录的 post/index 页面，并带上 memberId
+    router.push({
+      path: '../post/index',
+      query: {memberId: record.id}
+    });
+  } else if (key === 'sendMessage') {
+    // 打开发送消息弹窗，传入当前用户信息
+    sendMessageModalRef.value.show(record);
+  } else if (key === 'delMember') {
+    memberApi.delMember({id: record.id}).then(res => {
+      queryData();
+    });
+
+  } else if (key === 'deductCommission') {
+    currentDeductRecord.value = record;
+    deductAmount.value = null; // 重置输入框
+    deductModalVisible.value = true;
+  }
+}
 </script>

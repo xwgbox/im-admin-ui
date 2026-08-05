@@ -18,6 +18,9 @@ export const memberApi = {
   queryDetails : (param) => {
     return getRequest('/member/details', param);
   },
+  delMember : (param) => {
+    return getRequest('/member/del', param);
+  },
 
   /**
    * 增加  @author  xwg
@@ -31,6 +34,9 @@ export const memberApi = {
    */
   update: (param) => {
       return postRequest('/member/update', param);
+  },
+  updateAccount: (param) => {
+      return postRequest('/member/account/update', param);
   },
 
 

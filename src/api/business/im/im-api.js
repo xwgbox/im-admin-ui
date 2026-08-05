@@ -5,7 +5,7 @@
  * @Date:      2025-07-23 09:42:08
  * @Copyright  001
  */
-import { getRequest } from '/@/lib/axios';
+import { getRequest,postRequest } from '/@/lib/axios';
 
 export const customerApi = {
 
@@ -16,5 +16,11 @@ export const customerApi = {
     return getRequest('/im/customer', param);
   },
 
+  /**
+   * im查询  @author  xwg
+   */
+  sendSysMsgByMemberId : (data) => {
+    return postRequest('/im/send/sys/msg', data);
+  },
 
 };
