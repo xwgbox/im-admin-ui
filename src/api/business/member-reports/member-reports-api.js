@@ -22,7 +22,9 @@ export const memberReportsApi = {
     add: (param) => {
         return postRequest('/memberReports/add', param);
     },
-
+    queryDetails : (param) => {
+        return getRequest('/memberReports/details', param);
+    },
     /**
      * 修改  @author  xwg
      */

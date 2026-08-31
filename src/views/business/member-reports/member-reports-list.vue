@@ -78,6 +78,7 @@
 
                 <template v-if="column.dataIndex === 'action'">
                     <div class="smart-table-operate">
+                      <a-button @click="showDetail(record)" type="link">详情</a-button>
                         <a-button @click="showForm(record)" type="link">处理</a-button>
                         <a-button @click="onDelete(record)" danger type="link">删除</a-button>
                     </div>
@@ -103,7 +104,64 @@
         </div>
 
         <MemberReportsForm  ref="formRef" @reloadList="queryData"/>
-
+      <!-- 详情弹窗 -->
+      <a-modal
+          v-model:open="detailVisible"
+          title="举报详情"
+          :width="700"
+          :destroy-on-close="true"
+          :footer="null"
+      >
+        <div class="smart-detail-content">
+          <a-descriptions bordered :column="2" size="small">
+            <a-descriptions-item label="ID" :span="2">
+              {{ detailData.id }}
+            </a-descriptions-item>
+            <a-descriptions-item label="发起举报的用户ID">
+              {{ detailData.reporterMemberId }}
+            </a-descriptions-item>
+            <a-descriptions-item label="发起举报的用户昵称">
+              {{ detailData.reporterNickName }}
+            </a-descriptions-item>
+            <a-descriptions-item label="被举报的用户ID">
+              {{ detailData.reportedMemberId }}
+            </a-descriptions-item>
+            <a-descriptions-item label="被举报的用户昵称">
+              {{ detailData.reportedNickName }}
+            </a-descriptions-item>
+            <a-descriptions-item label="描述">
+              {{ detailData.problemDescription }}
+            </a-descriptions-item>
+            <a-descriptions-item label="违规类型">
+              {{ detailData.reportTypeDesc }}
+            </a-descriptions-item>
+            <a-descriptions-item label="举报状态">
+              {{ detailData.statusDesc }}
+            </a-descriptions-item>
+            <a-descriptions-item label="处理意见" :span="2">
+              {{ detailData.adminComment }}
+            </a-descriptions-item>
+            <a-descriptions-item label="创建时间">
+              {{ detailData.createTime }}
+            </a-descriptions-item>
+            <a-descriptions-item label="更新时间">
+              {{ detailData.updateTime }}
+            </a-descriptions-item>
+            <a-descriptions-item label="图片" :span="2">
+              <div v-if="detailData.urls && detailData.urls.length > 0">
+                <a-image
+                    v-for="(url, index) in detailData.urls"
+                    :key="index"
+                    :src="url"
+                    :width="200"
+                    style="margin-right: 10px; margin-bottom: 10px;"
+                />
+              </div>
+              <span v-else>暂无图片</span>
+            </a-descriptions-item>
+          </a-descriptions>
+        </div>
+      </a-modal>
     </a-card>
 </template>
 <script setup>
@@ -176,6 +234,10 @@
             width: 90,
         },
     ]);
+    // 详情弹窗显示状态
+    const detailVisible = ref(false);
+    // 详情数据
+    const detailData = ref({});
 
     // ---------------------------- 查询数据表单和方法 ----------------------------
 
@@ -183,6 +245,20 @@
         pageNum: 1,
         pageSize: 10,
     };
+    // 查看详情
+    async function showDetail(record) {
+      if (!record || !record.id) {
+        console.warn('showDetail: 无效的 record 数据');
+        return;
+      }
+      try {
+        const res = await memberReportsApi.queryDetails({id:record.id});
+        detailData.value = res.data;
+        detailVisible.value = true;
+      } catch (e) {
+        smartSentry.captureError(e);
+      }
+    }
     // 查询表单form
     const queryForm = reactive({ ...queryFormState });
     // 表格加载loading

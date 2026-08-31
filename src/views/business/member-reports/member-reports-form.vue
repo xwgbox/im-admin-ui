@@ -15,18 +15,18 @@
       :destroyOnClose="true"
   >
     <a-form ref="formRef" :model="form" :rules="rules" :label-col="{ span: 5 }" >
-        <a-form-item label="发起举报的用户的ID"  name="reporterMemberId">
-          <a-input-number style="width: 100%" v-model:value="form.reporterMemberId" placeholder="发起举报的用户的ID" />
-        </a-form-item>
-        <a-form-item label="被举报的用户的ID"  name="reportedMemberId">
-          <a-input-number style="width: 100%" v-model:value="form.reportedMemberId" placeholder="被举报的用户的ID" />
-        </a-form-item>
-        <a-form-item label="违规类型"  name="reportType">
-          <a-input-number style="width: 100%" v-model:value="form.reportType" placeholder="违规类型" />
-        </a-form-item>
-        <a-form-item label="举报的状态，如待处理、已处理"  name="status">
-          <a-input-number style="width: 100%" v-model:value="form.status" placeholder="举报的状态，如待处理、已处理" />
-        </a-form-item>
+
+      <!-- 举报状态 → 下拉 -->
+      <a-form-item label="举报状态" name="status">
+        <a-select style="width: 100%" v-model:value="form.status" placeholder="请选择举报状态">
+          <a-select-option :value="0">待处理</a-select-option>
+          <a-select-option :value="1">已处理</a-select-option>
+        </a-select>
+      </a-form-item>
+      <a-form-item label="处理意见" name="adminComment">
+        <a-input style="width: 100%" v-model:value="form.adminComment" placeholder="处理意见" />
+
+      </a-form-item>
     </a-form>
 
     <template #footer>
@@ -79,18 +79,13 @@
   const formRef = ref();
 
   const formDefault = {
-      reporterMemberId: undefined, //发起举报的用户的ID
-      reportedMemberId: undefined, //被举报的用户的ID
-      reportType: undefined, //违规类型
-      status: undefined, //举报的状态，如待处理、已处理
+      status: undefined, //举报的状态，如 0待处理、1已处理
+      adminComment: undefined, //意见
   };
 
   let form = reactive({ ...formDefault });
 
   const rules = {
-      reporterMemberId: [{ required: true, message: '发起举报的用户的ID 必填' }],
-      reportedMemberId: [{ required: true, message: '被举报的用户的ID 必填' }],
-      reportType: [{ required: true, message: '违规类型 必填' }],
       status: [{ required: true, message: '举报的状态，如待处理、已处理 必填' }],
   };
 
