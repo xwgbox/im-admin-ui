@@ -54,6 +54,7 @@
         <!---------- 表格 begin ----------->
         <a-table
             size="small"
+            :scroll="{ y: '100%' }"
             :dataSource="tableData"
             :columns="columns"
             rowKey="id"

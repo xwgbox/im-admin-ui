@@ -56,6 +56,7 @@
         :dataSource="tableData"
         :columns="columns"
         rowKey="id"
+        :scroll="{ y: '100%' }"
         bordered
         :loading="tableLoading"
         :pagination="false"

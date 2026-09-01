@@ -58,6 +58,7 @@
             :columns="columns"
             rowKey="id"
             bordered
+            :scroll="{ y: '100%' }"
             :loading="tableLoading"
             :pagination="false"
         >

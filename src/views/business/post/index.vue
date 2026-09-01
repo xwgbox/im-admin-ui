@@ -17,6 +17,7 @@
 
     <!-- 列表 -->
     <a-table
+        :scroll="{ y: '100%' }"
         :dataSource="listData"
         :columns="columns"
         :loading="loading"
@@ -53,6 +54,7 @@
     <!-- 详情弹窗 -->
     <!-- 1. 添加 @cancel 事件监听关闭动作，添加 destroy-on-close 彻底销毁视频组件 -->
     <a-modal
+
         v-model:open="detailVisible"
         title="动态详情"
         :footer="null"

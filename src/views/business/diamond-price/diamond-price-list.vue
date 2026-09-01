@@ -52,6 +52,7 @@
 
         <!---------- 表格 begin ----------->
         <a-table
+            :scroll="{ y: '100%' }"
             size="small"
             :dataSource="tableData"
             :columns="columns"

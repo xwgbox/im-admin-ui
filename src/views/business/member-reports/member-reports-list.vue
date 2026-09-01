@@ -106,6 +106,7 @@
         <MemberReportsForm  ref="formRef" @reloadList="queryData"/>
       <!-- 详情弹窗 -->
       <a-modal
+          :scroll="{ y: '100%' }"
           v-model:open="detailVisible"
           title="举报详情"
           :width="700"

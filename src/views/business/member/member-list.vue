@@ -63,6 +63,7 @@
         bordered
         :loading="tableLoading"
         :pagination="false"
+        :scroll="{ y: '100%' }"
     >
       <template #bodyCell="{ text, record, column }">
 
