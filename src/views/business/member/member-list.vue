@@ -94,6 +94,7 @@
               <template #overlay>
                 <a-menu @click="({ key }) => handleMenuClick(key, record)">
                   <a-menu-item key="viewPost">查看动态</a-menu-item>
+                  <a-menu-item key="viewMemberBill">查看钻石账单</a-menu-item>
                   <a-menu-item key="delMember">删除</a-menu-item>
                   <a-menu-item key="deductCommission">扣除佣金</a-menu-item>
                   <a-menu-item key="sendMessage">发送系统消息</a-menu-item>
@@ -325,7 +326,12 @@ function handleMenuClick(key, record) {
       path: '../post/index',
       query: {memberId: record.id}
     });
-  } else if (key === 'sendMessage') {
+  }else if(key==='viewMemberBill'){
+    router.push({
+      path: '../member-bill/member-bill-list',
+      query: {memberId: record.id}
+    });
+  }else if (key === 'sendMessage') {
     // 打开发送消息弹窗，传入当前用户信息
     sendMessageModalRef.value.show(record);
   } else if (key === 'delMember') {

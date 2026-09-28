@@ -151,6 +151,11 @@
             dataIndex: 'typeDesc',
             ellipsis: true,
         },
+      {
+        title: '渠道类型 ',
+        dataIndex: 'channelTypeDesc',
+        ellipsis: true,
+      },
         {
             title: '真实价格',
             dataIndex: 'paymentPrice',

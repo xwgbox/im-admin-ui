@@ -137,6 +137,11 @@
             dataIndex: 'orderNo',
             ellipsis: true,
         },
+      {
+        title: '渠道类型 ',
+        dataIndex: 'channelTypeDesc',
+        ellipsis: true,
+      },
         {
             title: '支付价格',
             dataIndex: 'paymentPrice',

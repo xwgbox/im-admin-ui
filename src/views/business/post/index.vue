@@ -97,7 +97,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted,onActivated  } from 'vue';
 import { useRoute } from 'vue-router'; // 引入 useRoute
 import { DownOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
@@ -233,6 +233,15 @@ const handleCancel = () => {
 // 页面加载时获取数据
 onMounted(() => {
   // 核心代码：判断 URL 中是否存在 memberId 参数，若有则赋值
+  if (route.query.memberId) {
+    queryForm.value.memberId = route.query.memberId;
+  }
+  fetchData();
+});
+
+
+// keep-alive 缓存后再次激活时触发（如果路由配置了 keep-alive 则需要）
+onActivated(() => {
   if (route.query.memberId) {
     queryForm.value.memberId = route.query.memberId;
   }
