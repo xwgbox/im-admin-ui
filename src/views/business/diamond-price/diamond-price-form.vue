@@ -21,6 +21,9 @@
         <a-form-item label="钻石数量"  name="quantity">
           <a-input-number style="width: 100%" v-model:value="form.quantity" placeholder="钻石数量" />
         </a-form-item>
+      <a-form-item label="赠送数量"  name="giveQuantity">
+        <a-input-number style="width: 100%" v-model:value="form.giveQuantity" placeholder="赠送数量" />
+      </a-form-item>
     </a-form>
 
     <template #footer>
@@ -75,6 +78,7 @@
   const formDefault = {
       truthPrice: undefined, //真实价格
       quantity: undefined, //钻石数量
+    giveQuantity: undefined, //赠送数量
   };
 
   let form = reactive({ ...formDefault });

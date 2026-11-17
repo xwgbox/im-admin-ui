@@ -133,6 +133,10 @@
             title: '主键ID',
             dataIndex: 'id',
             ellipsis: true,
+        },{
+            title: '标题',
+            dataIndex: 'title',
+            ellipsis: true,
         },
         {
             title: '价格类型',
@@ -167,6 +171,10 @@
         {
             title: '暖心服务次数',
             dataIndex: 'activitiesQuantity',
+            ellipsis: true,
+        },{
+            title: '赠送钻石',
+            dataIndex: 'giveQuantity',
             ellipsis: true,
         },
         {

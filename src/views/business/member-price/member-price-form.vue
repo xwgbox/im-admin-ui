@@ -22,7 +22,10 @@
       <a-form-item label="价格类型" name="type">
         <SmartEnumSelect width="100%" v-model:value="form.type" placeholder="请选择类型" enum-name="PRICE_TYPE_ENUM" />
       </a-form-item>
-        <a-form-item label="原价格"  name="originalPrice">
+        <a-form-item label="标题"  name="title">
+          <a-input style="width: 100%" v-model:value="form.title" placeholder="标题" />
+        </a-form-item>
+      <a-form-item label="原价格"  name="originalPrice">
           <a-input-number style="width: 100%" v-model:value="form.originalPrice" placeholder="原价格" />
         </a-form-item>
         <a-form-item label="真实价格"  name="truthPrice">
@@ -38,7 +41,7 @@
       <a-form-item label="有效时间"  name="effectiveTime">
         <a-input-number style="width: 100%" v-model:value="form.effectiveTime" placeholder="有效时间" />
       </a-form-item>
-        <a-form-item label="交友次数"  name="makeFriendsQuantity">
+        <a-form-item label="交友次数（每天）"  name="makeFriendsQuantity">
           <a-input-number style="width: 100%" v-model:value="form.makeFriendsQuantity" placeholder="交友次数" />
         </a-form-item>
         <a-form-item label="评论次数"  name="reviewQuantity">
@@ -52,6 +55,9 @@
       </a-form-item>
       <a-form-item label="匹配交友次数"  name="matchMakingFriendsQuantity">
         <a-input-number style="width: 100%" v-model:value="form.matchMakingFriendsQuantity" placeholder="暖心服务次数" />
+      </a-form-item>
+      <a-form-item label="赠送钻石"  name="giveQuantity">
+        <a-input-number style="width: 100%" v-model:value="form.giveQuantity" placeholder="赠送钻石" />
       </a-form-item>
     </a-form>
 
@@ -106,6 +112,7 @@
   const formRef = ref();
 
   const formDefault = {
+    title: undefined, //标题
       type: undefined, //价格类型（参考PriceTypeEnum）
       originalPrice: undefined, //原价格
       truthPrice: undefined, //真实价格
@@ -113,6 +120,7 @@
       typeTime: undefined, //时间类型（参考PriceTimeEnum）
       makeFriendsQuantity: undefined, //交友次数
       activitiesQuantity: undefined, //暖心服务次数
+      giveQuantity: undefined, //赠送钻石
   };
 
   let form = reactive({ ...formDefault });

@@ -135,6 +135,10 @@
             title: '钻石数量',
             dataIndex: 'quantity',
             ellipsis: true,
+        },{
+            title: '赠送数量',
+            dataIndex: 'giveQuantity',
+            ellipsis: true,
         },
         {
             title: '操作',
